@@ -101,14 +101,8 @@ function deleteCheck(e) {
       parent.remove();
     });
   } else if (item.classList.contains("complete-btn")) {
-    let checkedList;
-
-    if (localStorage.getItem("checkedList") === null) {
-      checkedList = [];
-    } else {
-      checkedList = JSON.parse(localStorage.getItem("checkedList"));
-    }
-
+   
+    checkedList = JSON.parse(localStorage.getItem("checkedList"));
     if (parent.classList.contains("completed")) {
       checkedList.splice(checkedList.indexOf(stringName), 1);
     } else {
@@ -152,11 +146,27 @@ function saveLocalTodos(todo) {
 }
 
 function createSavedTodos() {
+  let todos;
+  if (localStorage.getItem("todos") === null) {
+      todos = [];
+    } else {
+      todos = JSON.parse(localStorage.getItem("todos"));
+    }
+  
   todos = JSON.parse(localStorage.getItem("todos"));
   todos.forEach(function (todo) {
     createElement(todo);
   });
 
+  
+  let checkedList;
+  
+  if (localStorage.getItem("checkedList") === null) {
+      checkedList = [];
+    } else {
+      checkedList = JSON.parse(localStorage.getItem("checkedList"));
+    }
+  
   checkedList = JSON.parse(localStorage.getItem("checkedList"));
   list.childNodes.forEach(function (div) {
     const name = div.children[0].innerText;
