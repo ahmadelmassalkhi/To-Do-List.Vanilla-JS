@@ -5,7 +5,6 @@ const filter = document.querySelector(".filter");
 
 document.addEventListener("DOMContentLoaded", createSavedTodos);
 document.addEventListener("DOMContentLoaded", () => {
-
   const text = document.querySelector(".fancy");
   const content = text.textContent;
 
@@ -87,12 +86,19 @@ function deleteCheck(e) {
   const item = e.target;
   const parent = item.parentElement;
   const stringName = parent.children[0].innerText;
+
+  let checkedList;
+  if (localStorage.getItem("checkedList") === null) {
+    checkedList = [];
+  } else {
+    checkedList = JSON.parse(localStorage.getItem("checkedList"));
+  }
+
   if (item.classList.contains("trash-btn")) {
     todos = JSON.parse(localStorage.getItem("todos"));
     todos.splice(todos.indexOf(parent.children[0].innerText), 1);
     localStorage.setItem("todos", JSON.stringify(todos));
 
-    checkedList = JSON.parse(localStorage.getItem("checkedList"));
     checkedList.splice(checkedList.indexOf(parent.children[0].innerText), 1);
     localStorage.setItem("checkedList", JSON.stringify(checkedList));
 
@@ -101,8 +107,7 @@ function deleteCheck(e) {
       parent.remove();
     });
   } else if (item.classList.contains("complete-btn")) {
-   
-    checkedList = JSON.parse(localStorage.getItem("checkedList"));
+    
     if (parent.classList.contains("completed")) {
       checkedList.splice(checkedList.indexOf(stringName), 1);
     } else {
@@ -139,7 +144,12 @@ function todoFilter(e) {
 }
 
 function saveLocalTodos(todo) {
-  todos = JSON.parse(localStorage.getItem("todos"));
+  let todos;
+  if (localStorage.getItem("todos") === null) {
+    todos = [];
+  } else {
+    todos = JSON.parse(localStorage.getItem("todos"));
+  }
 
   todos.push(todo);
   localStorage.setItem("todos", JSON.stringify(todos));
@@ -148,29 +158,27 @@ function saveLocalTodos(todo) {
 function createSavedTodos() {
   let todos;
   if (localStorage.getItem("todos") === null) {
-      todos = [];
-    } else {
-      todos = JSON.parse(localStorage.getItem("todos"));
-      todos.forEach(function (todo) {
+    todos = [];
+  } else {
+    todos = JSON.parse(localStorage.getItem("todos"));
+    todos.forEach(function (todo) {
       createElement(todo);
     });
-    }
-  
-  
-  
-  let checkedList;
-  
-  if (localStorage.getItem("checkedList") === null) {
+
+    let checkedList;
+
+    if (localStorage.getItem("checkedList") === null) {
       checkedList = [];
     } else {
       checkedList = JSON.parse(localStorage.getItem("checkedList"));
-      
+
       list.childNodes.forEach(function (div) {
-      const name = div.children[0].innerText;
-      if (checkedList.includes(name)) {
-        div.classList.add("completed");
- 
-  
+        const name = div.children[0].innerText;
+        if (checkedList.includes(name)) {
+          div.classList.add("completed");
+        }
+      });
     }
-  });
+  }
 }
+
