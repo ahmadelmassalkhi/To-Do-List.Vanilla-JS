@@ -4,6 +4,43 @@ const submitBtn = document.querySelector(".submit-btn");
 const filter = document.querySelector(".filter");
 
 document.addEventListener("DOMContentLoaded", createSavedTodos);
+document.addEventListener("DOMContentLoaded", () => {
+
+  const text = document.querySelector(".fancy");
+  const content = text.textContent;
+
+  let letters = content.split("");
+  const length = letters.length;
+  text.textContent = "";
+
+  for (let i = 0; i < length; i++) {
+    text.innerHTML += "<span>" + letters[i] + "</span>";
+  }
+  const spans = text.querySelectorAll("span");
+  let char = 0;
+  let timer = null;
+
+  function clock1() {
+    char = 0;
+    timer = setInterval(addClass, 50);
+  }
+  function addClass() {
+    let spanC = spans[char];
+    spanC.classList.add("fade");
+    let ms = length * 50 + 50;
+    setTimeout(() => {
+      char = 0;
+      spanC.classList.add("color");
+    }, ms);
+    char++;
+    if (char == length) {
+      clearInterval(timer);
+      timer = null;
+    }
+  }
+  clock1();
+});
+
 submitBtn.addEventListener("click", addToDo);
 list.addEventListener("click", deleteCheck);
 filter.addEventListener("click", todoFilter);
