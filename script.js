@@ -151,12 +151,12 @@ function createSavedTodos() {
       todos = [];
     } else {
       todos = JSON.parse(localStorage.getItem("todos"));
+      todos.forEach(function (todo) {
+      createElement(todo);
+    });
     }
   
-  todos.forEach(function (todo) {
-    createElement(todo);
-  });
-
+  
   
   let checkedList;
   
@@ -164,13 +164,13 @@ function createSavedTodos() {
       checkedList = [];
     } else {
       checkedList = JSON.parse(localStorage.getItem("checkedList"));
-    }
-  
+      
+      list.childNodes.forEach(function (div) {
+      const name = div.children[0].innerText;
+      if (checkedList.includes(name)) {
+        div.classList.add("completed");
  
-  list.childNodes.forEach(function (div) {
-    const name = div.children[0].innerText;
-    if (checkedList.includes(name)) {
-      div.classList.add("completed");
+  
     }
   });
 }
