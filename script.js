@@ -153,7 +153,6 @@ function createSavedTodos() {
       todos = JSON.parse(localStorage.getItem("todos"));
     }
   
-  todos = JSON.parse(localStorage.getItem("todos"));
   todos.forEach(function (todo) {
     createElement(todo);
   });
@@ -167,7 +166,7 @@ function createSavedTodos() {
       checkedList = JSON.parse(localStorage.getItem("checkedList"));
     }
   
-  checkedList = JSON.parse(localStorage.getItem("checkedList"));
+ 
   list.childNodes.forEach(function (div) {
     const name = div.children[0].innerText;
     if (checkedList.includes(name)) {
