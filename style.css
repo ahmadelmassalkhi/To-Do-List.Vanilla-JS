@@ -1,0 +1,124 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  background-image: linear-gradient(120deg, #f6d365, #fda085);
+  color: white;
+  font-family: "Poppins";
+  min-height: 100vh;
+}
+header {
+  font-size: 1rem;
+}
+header,
+form {
+  min-height: 20vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+form input,
+form button {
+  padding: 0.5rem;
+  font-size: 1rem;
+  border: none;
+  outline: none;
+}
+form button {
+  background-color: white;
+  color: #d88771;
+  transition: 0.3s ease-out;
+}
+form button:hover {
+  background-color: #d88771;
+  color: white;
+}
+.list-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.todo-list {
+  min-width: 25%;
+  list-style: none;
+}
+.todo-div {
+  margin: 1rem;
+  font-size: 1rem;
+  color: black;
+  background-color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: all 0.5s ease-out;
+}
+
+.todo-li {
+  flex: 1;
+  font-size: 1rem;
+  padding: 0.5rem 0.5rem;
+}
+.trash-btn,
+.complete-btn {
+  outline: none;
+  border: none;
+  background-color: #ff6f47;
+  padding: 0.8rem;
+  color: white;
+}
+.complete-btn {
+  background-color: rgb(99, 243, 99);
+}
+
+.completed {
+  opacity: 0.5;
+  text-decoration: line-through;
+}
+.fall {
+  transform: translateY(8rem) rotateZ(20deg);
+  opacity: 0;
+}
+.fa-trash,
+.fa-check {
+  pointer-events: none;
+}
+select {
+  -webkit-appearance: none;
+  appearance: none;
+  outline: none;
+  border: none;
+  width: 7.56rem;
+  padding:0.5rem;
+  cursor: pointer;
+  color: #d88771;
+}
+.select {
+  margin: 0.75rem;
+  position: relative;
+  overflow: hidden;
+}
+.select::after {
+  content: "\25BC";
+  background-color: #ff6f47;
+  position: absolute;
+  pointer-events: none;
+  top: 0;
+  right: 0;
+  padding: 0.3rem;
+}
+span{
+  opacity: 0;
+  transform: translateY(165px);
+  transition: all 1s ease;
+  display: inline-block;
+}
+span.fade{
+  opacity: 1;
+  transform: translateY(0px);
+}
+span.color{
+  color: rgb(212, 9, 128);
+  color: white;
+}
